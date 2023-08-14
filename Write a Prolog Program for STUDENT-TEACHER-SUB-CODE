@@ -1,0 +1,32 @@
+% Define relationships between subjects and teachers
+teaches_subject(teacher(john), subject(math, m101)).
+teaches_subject(teacher(lisa), subject(physics, p201)).
+teaches_subject(teacher(michael), subject(chemistry, c301)).
+
+% Define relationships between students and subjects
+enrolled_in_subject(student(alice), subject(math, m101)).
+enrolled_in_subject(student(bob), subject(physics, p201)).
+enrolled_in_subject(student(carol), subject(chemistry, c301)).
+enrolled_in_subject(student(david), subject(math, m101)).
+
+% Predicate to find students taught by a teacher for a specific subject
+students_taught_by(Teacher, SubjectCode, Students) :-
+    teacher(Teacher),
+    teaches_subject(Teacher, subject(_, SubjectCode)),
+    findall(Student, enrolled_in_subject(Student, subject(_, SubjectCode)), Students).
+
+% Predicate to find the teacher of a subject for a specific student
+subject_teacher_for_student(Student, SubjectCode, Teacher) :-
+    student(Student),
+    enrolled_in_subject(Student, subject(_, SubjectCode)),
+    teaches_subject(Teacher, subject(_, SubjectCode)).
+
+% Example data
+teacher(john).
+teacher(lisa).
+teacher(michael).
+
+student(alice).
+student(bob).
+student(carol).
+student(david).

@@ -1,0 +1,17 @@
+% Recursive predicate to solve Towers of Hanoi
+hanoi(1, Source, _, Destination, Moves) :-
+    format("Move disk from ~w to ~w~n", [Source, Destination]),
+    Moves = 1.
+    
+hanoi(N, Source, Aux, Destination, Moves) :-
+    N > 1,
+    N1 is N - 1,
+    hanoi(N1, Source, Destination, Aux, Moves1),
+    format("Move disk from ~w to ~w~n", [Source, Destination]),
+    hanoi(N1, Aux, Source, Destination, Moves2),
+    Moves is Moves1 + 1 + Moves2.
+
+% Predicate to solve Towers of Hanoi
+solve_hanoi(N) :-
+    hanoi(N, 'A', 'B', 'C', Moves),
+    format("Total moves: ~w~n", [Moves]).

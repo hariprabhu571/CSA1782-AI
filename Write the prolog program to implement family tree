@@ -1,0 +1,46 @@
+% Define parent-child relationships
+parent(amy, bob).
+parent(bob, carol).
+parent(bob, david).
+parent(carol, emily).
+parent(david, frank).
+parent(emily, grace).
+
+% Predicate to define male individuals
+male(bob).
+male(david).
+male(frank).
+
+% Predicate to define female individuals
+female(amy).
+female(carol).
+female(emily).
+female(grace).
+
+% Predicate to define father relationship
+father(Father, Child) :-
+    parent(Father, Child),
+    male(Father).
+
+% Predicate to define mother relationship
+mother(Mother, Child) :-
+    parent(Mother, Child),
+    female(Mother).
+
+% Predicate to define sibling relationship
+sibling(Person1, Person2) :-
+    parent(Parent, Person1),
+    parent(Parent, Person2),
+    Person1 \= Person2.
+
+% Predicate to define grandparent relationship
+grandparent(Grandparent, Grandchild) :-
+    parent(Grandparent, Parent),
+    parent(Parent, Grandchild).
+
+% Predicate to define ancestor relationship
+ancestor(Ancestor, Descendant) :-
+    parent(Ancestor, Descendant).
+ancestor(Ancestor, Descendant) :-
+    parent(Ancestor, Intermediate),
+    ancestor(Intermediate, Descendant).

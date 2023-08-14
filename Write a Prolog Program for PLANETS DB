@@ -1,0 +1,27 @@
+% Define facts about planets
+planet(mercury, rocky, 0.39).
+planet(venus, rocky, 0.72).
+planet(earth, rocky, 1.00).
+planet(mars, rocky, 1.52).
+planet(jupiter, gas_giant, 5.20).
+planet(saturn, gas_giant, 9.58).
+planet(uranus, ice_giant, 19.22).
+planet(neptune, ice_giant, 30.05).
+
+% Define facts about moons
+moon(earth, moon, 1).
+moon(mars, phobos, 2).
+moon(mars, deimos, 3).
+moon(jupiter, io, 79).
+moon(jupiter, europa, 63).
+moon(jupiter, ganymede, 79).
+moon(jupiter, callisto, 67).
+moon(saturn, titan, 82).
+moon(uranus, titania, 14).
+moon(uranus, oberon, 13).
+moon(neptune, triton, 5).
+
+% Predicate to find moons of a planet
+moons_of_planet(Planet, Moons) :-
+    planet(Planet, _, _),
+    findall(Moon, moon(Planet, Moon, _), Moons).

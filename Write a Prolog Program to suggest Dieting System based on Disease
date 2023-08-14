@@ -1,0 +1,17 @@
+% Define diet suggestions based on diseases
+diet_suggestion(diabetes, 'Low-carb diet with controlled sugar intake.').
+diet_suggestion(hypertension, 'Low-sodium diet with plenty of fruits and vegetables.').
+diet_suggestion(high_cholesterol, 'Low-fat diet with whole grains and lean protein.').
+diet_suggestion(celiac_disease, 'Gluten-free diet with emphasis on rice, vegetables, and gluten-free grains.').
+
+% Predicate to get diet suggestion for a disease
+get_diet_suggestion(Disease, Suggestion) :-
+    diet_suggestion(Disease, Suggestion),
+    format('Diet suggestion for ~w: ~w~n', [Disease, Suggestion]).
+
+% Example queries
+?- get_diet_suggestion(diabetes, Suggestion).
+Diet suggestion for diabetes: Low-carb diet with controlled sugar intake.
+
+?- get_diet_suggestion(hypertension, Suggestion).
+Diet suggestion for hypertension: Low-sodium diet with plenty of fruits and vegetables.
